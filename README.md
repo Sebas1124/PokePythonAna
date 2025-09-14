@@ -1,54 +1,69 @@
-# React + TypeScript + Vite
+# Aplicación Pokémon con Supabase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación web que permite explorar información sobre Pokémon con un sistema de autenticación utilizando Supabase.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Exploración de Pokémon por tipo, generación y más
+- Detalles completos de cada Pokémon
+- Sistema de autenticación con Supabase
+- Opciones de login con email/contraseña y proveedores sociales
+- Interfaz responsiva para todos los dispositivos
+- Desarrollada con React, TypeScript y Vite
 
-## Expanding the ESLint configuration
+## Autenticación con Supabase
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Esta aplicación utiliza Supabase para la gestión de usuarios y autenticación:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Registro y login con email/contraseña
+- Autenticación con proveedores sociales
+- Recuperación de contraseñas
+- Perfiles de usuario personalizados
+
+## Instalación
+
+1. Clona este repositorio
+2. Instala las dependencias:
+  ```bash
+  npm install
+  ```
+3. Configura las variables de entorno:
+  - Crea un archivo `.env` en la raíz del proyecto
+  - Añade tus credenciales de Supabase:
+    ```
+    VITE_SUPABASE_URL=tu_url_de_supabase
+    VITE_SUPABASE_ANON_KEY=tu_clave_anonima_de_supabase
+    ```
+
+4. Inicia la aplicación en modo desarrollo:
+  ```bash
+  npm run dev
+  ```
+
+## Uso
+
+1. Accede a la aplicación en tu navegador
+2. Regístrate o inicia sesión con tus credenciales
+3. Explora la base de datos de Pokémon
+4. Guarda tus Pokémon favoritos en tu perfil
+
+## Tecnologías
+
+- React + TypeScript
+- Vite
+- Supabase (Autenticación y Base de datos)
+- React Router
+- PokeAPI
+
+## Estructura del Proyecto
+
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+/src
+  /components    # Componentes reutilizables
+  /pages         # Páginas principales
+  /services      # Servicios para API y Supabase
+  /hooks         # Custom hooks
+  /types         # Definiciones de TypeScript
+  /context       # Contextos de React (Auth, etc.)
+  /assets        # Imágenes y recursos estáticos
 ```

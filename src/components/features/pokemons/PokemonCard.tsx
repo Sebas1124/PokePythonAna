@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -37,27 +37,42 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ name, imageUrl, types,
     const typeStyle = typeColorMap[mainType] || { bg: 'from-slate-400 to-slate-500', light: 'bg-slate-200', shadow: 'shadow-slate-400/50' };
 
     return (
-        <div className={`rounded-xl overflow-hidden shadow-lg hover:shadow-xl m-4 transform hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer ${typeStyle.shadow} max-w-xs`}>
-            {/* Card header with ID */}
-            <div className={`p-2 bg-gradient-to-r ${typeStyle.bg} flex justify-between items-center`}>
+        <div className={`rounded-xl overflow-hidden shadow-lg hover:shadow-xl m-4 transform hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer ${typeStyle.shadow} w-full h-[320px] flex flex-col`}>
+            {/* Card header with ID - altura fija */}
+            <div className={`p-2 bg-gradient-to-r ${typeStyle.bg} flex justify-between items-center h-[48px]`}>
                 <h3 className="font-bold text-white capitalize text-lg tracking-wide truncate max-w-[70%]">{name}</h3>
                 <span className="text-white/80 font-mono font-semibold">#{id.toString().padStart(3, '0')}</span>
             </div>
             
-            {/* Image section with gradient background */}
-            <div className={`p-6 ${typeStyle.light} flex justify-center items-center`} onClick={() => navigate(`/pokemon/${id}`)}>
-                <div className={`w-40 h-40 rounded-full flex items-center justify-center p-2`}>
+            {/* Image section con altura fija y mejor centrado */}
+            <div 
+                className={`${typeStyle.light} flex-1 h-[180px] flex items-center justify-center`} 
+                onClick={() => navigate(`/pokemon/${id}`)}
+            >
+                <div 
+                    className="w-[120px] h-[120px] flex items-center justify-center overflow-hidden"
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
                     <LazyLoadImage
-                        className="w-36 h-36 object-contain drop-shadow-md transform hover:scale-110 transition-transform duration-300" 
+                        className="max-w-full max-h-full object-contain drop-shadow-lg transform hover:scale-110 transition-transform duration-300" 
                         alt={name}
                         src={imageUrl}
+                        effect="opacity"
+                        style={{
+                            margin: '0 auto',
+                            display: 'block'
+                        }}
                     />
                 </div>
             </div>
             
-            {/* Type badges */}
-            <div className="px-4 py-3 bg-white border-t">
-                <div className="flex flex-wrap gap-2 justify-center">
+            {/* Type badges - altura fija */}
+            <div className="px-4 py-3 bg-white border-t h-[70px] flex items-center">
+                <div className="flex flex-wrap gap-2 justify-center w-full">
                     {types.map((type) => {
                         const style = typeColorMap[type] || { bg: 'from-slate-400 to-slate-500' };
                         return (
