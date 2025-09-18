@@ -161,7 +161,7 @@ export const PokemonDetailPage: React.FC = () => {
                     <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
                         <div className="mb-6 md:mb-0 flex flex-col items-center md:items-start">
                             <div className="flex items-center gap-4 mb-4">
-                                <h1 className="text-4xl font-bold text-white capitalize">{pokemon.name}</h1>
+                                <h1 className="text-4xl font-bold text-white capitalize" data-testid="pokemon-name">{pokemon.name}</h1>
                                 <span className="text-xl text-white/70 font-mono">#{pokemon.id.toString().padStart(3, '0')}</span>
                             </div>
                             <div className="flex flex-wrap gap-2 mb-4">
