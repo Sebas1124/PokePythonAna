@@ -103,20 +103,26 @@ export const SearchPokemon: React.FC<SearchPokemonProps> = ({ onSelectPokemon })
               <SpinnerComponent />
             </div>
           ) : searchResults.length > 0 ? (
-            <ul className="py-1">
+            <ul 
+              className="py-1"
+              data-testid="search-results-list"
+            >
               {searchResults.map((pokemon) => (
                 <li 
                   key={pokemon.id}
                   className="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer transition-colors duration-150"
                   onClick={() => handleSelectPokemon(pokemon.url)}
+                  data-testid={`search-result-${pokemon.name}`}
                 >
                   <img 
                     src={pokemon.imageUrl} 
                     alt={pokemon.name} 
                     className="w-10 h-10 mr-3"
+                    data-testid={`search-result-image-${pokemon.name}`}
+                    onClick={(e) => { e.stopPropagation(); handleSelectPokemon(pokemon.url); }}
                   />
                   <div>
-                    <p className="font-medium text-white capitalize">{pokemon.name}</p>
+                    <p className="font-medium text-white capitalize" data-testid={`search-result-name-${pokemon.name}`}>{pokemon.name}</p>
                     <div className="flex gap-1 mt-1">
                       {pokemon.types.map((type) => (
                         <span 
